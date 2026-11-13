@@ -32,7 +32,7 @@
     const inDur  = el => 1150 + 75 * (el.childElementCount - 1);
     const outDur = el => 900 + 55 * (el.childElementCount - 1);
 
-    let cur = 0, timers = [], userPaused = false, running = false;
+    let cur = 0, timers = [], running = false;
     const later = (fn, ms) => timers.push(setTimeout(fn, ms));
     const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
 
@@ -62,28 +62,11 @@
       els.forEach((el, i) => { el.className = i === cur ? 'word is-shown' : 'word'; });
     }
 
-    // Pause / play button (WCAG 2.2.2: moving content longer than 5s must be pausable).
-    const toggle = document.querySelector('.cycle-toggle');
-    const headline = document.querySelector('.hero__headline');
-    const measure = () => headline?.style.setProperty('--cycle-w', `${cycle.getBoundingClientRect().width}px`);
-    if (toggle) {
-      toggle.hidden = false;
-      toggle.setAttribute('aria-pressed', 'false');
-      toggle.addEventListener('click', () => {
-        userPaused = !userPaused;
-        toggle.setAttribute('aria-pressed', String(userPaused));
-        toggle.setAttribute('aria-label', userPaused ? 'Play headline animation' : 'Pause headline animation');
-        if (userPaused) halt(); else run(false);
-      });
-      document.fonts?.ready.then(measure);
-      new ResizeObserver(measure).observe(cycle);
-    }
 
     // Don't animate in a background tab; pick up again when the visitor returns.
     let started = false;
     function onVisibility() {
       if (document.visibilityState !== 'visible') { if (running) halt(); return; }
-      if (userPaused) return;
       if (!started) { started = true; setTimeout(() => run(true), 300); }
       else run(false);
     }
