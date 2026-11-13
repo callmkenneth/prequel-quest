@@ -26,32 +26,69 @@
     });
     cycle.replaceChildren(...els);
 
-    const HOLD = 1500;      // how long each word rests before turning to smoke
+    /* Loops forever: each word smokes in, rests, then smokes out while the next forms. */
+    const HOLD = 1800;      // how long each word rests before turning to smoke
     const OVERLAP = 350;    // next word starts forming while the last one drifts away
-    const wait = ms => new Promise(r => setTimeout(r, ms));
-    const dur = (el, perChar, base) => base + perChar * (el.childElementCount - 1);
+    const inDur  = el => 1150 + 75 * (el.childElementCount - 1);
+    const outDur = el => 900 + 55 * (el.childElementCount - 1);
 
-    async function play() {
-      els[0].classList.add('is-in');
-      await wait(dur(els[0], 75, 1150) + HOLD);
-      for (let n = 1; n < els.length; n++) {
-        const prev = els[n - 1];
-        prev.classList.replace('is-in', 'is-out');
-        await wait(OVERLAP);
-        els[n].classList.add('is-in');
-        await wait(dur(prev, 55, 900) - OVERLAP);
-        prev.classList.remove('is-out');
-        if (n < els.length - 1) await wait(dur(els[n], 75, 1150) - (dur(prev, 55, 900) - OVERLAP) + HOLD);
-      }
+    let cur = 0, timers = [], userPaused = false, running = false;
+    const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+    const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
+
+    function step() {
+      const prev = els[cur];
+      const nextIndex = (cur + 1) % els.length;
+      const next = els[nextIndex];
+      prev.classList.remove('is-in', 'is-shown');
+      prev.classList.add('is-out');
+      later(() => { next.classList.remove('is-out', 'is-shown'); next.classList.add('is-in'); cur = nextIndex; }, OVERLAP);
+      later(() => prev.classList.remove('is-out'), outDur(prev));
+      later(step, OVERLAP + inDur(next) + HOLD);
     }
 
-    const start = () => setTimeout(play, 300);
-    if (document.visibilityState === 'visible') start();
-    else document.addEventListener('visibilitychange', function once() {
-      if (document.visibilityState !== 'visible') return;
-      document.removeEventListener('visibilitychange', once);
-      start();
-    });
+    function run(firstTime) {
+      if (running) return;
+      running = true;
+      if (firstTime) { els[0].classList.add('is-in'); later(step, inDur(els[0]) + HOLD); }
+      else later(step, 900);
+    }
+
+    // Freeze on a fully formed word (no half-blurred letters).
+    function halt() {
+      running = false;
+      clearTimers();
+      cycle.getAnimations({ subtree: true }).forEach(a => a.cancel());
+      els.forEach((el, i) => { el.className = i === cur ? 'word is-shown' : 'word'; });
+    }
+
+    // Pause / play button (WCAG 2.2.2: moving content longer than 5s must be pausable).
+    const toggle = document.querySelector('.cycle-toggle');
+    const headline = document.querySelector('.hero__headline');
+    const measure = () => headline?.style.setProperty('--cycle-w', `${cycle.getBoundingClientRect().width}px`);
+    if (toggle) {
+      toggle.hidden = false;
+      toggle.setAttribute('aria-pressed', 'false');
+      toggle.addEventListener('click', () => {
+        userPaused = !userPaused;
+        toggle.setAttribute('aria-pressed', String(userPaused));
+        toggle.setAttribute('aria-label', userPaused ? 'Play headline animation' : 'Pause headline animation');
+        if (userPaused) halt(); else run(false);
+      });
+      document.fonts?.ready.then(measure);
+      new ResizeObserver(measure).observe(cycle);
+    }
+
+    // Don't animate in a background tab; pick up again when the visitor returns.
+    let started = false;
+    function onVisibility() {
+      if (document.visibilityState !== 'visible') { if (running) halt(); return; }
+      if (userPaused) return;
+      if (!started) { started = true; setTimeout(() => run(true), 300); }
+      else run(false);
+    }
+    document.addEventListener('visibilitychange', onVisibility);
+    onVisibility();
   }
 
   /* ---------- mobile / tablet menu ---------- */
