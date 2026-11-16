@@ -717,3 +717,28 @@ section[id], main { scroll-margin-top: 16px; }
   .footer__tower { width: 110px; }
   .footer__word { font-size: 130px; line-height: 117px; letter-spacing: -8px; }
 }
+
+/* ---------- legal + contact pages ---------- */
+.page-top { background: var(--night); color: var(--white); padding: 20px 0; }
+.legal { padding: 56px 0 88px; }
+.legal__inner { max-width: 720px; }
+.legal__title { font-size: clamp(44px, 11vw, 72px); line-height: 1.04; font-weight: 400; letter-spacing: -0.035em; }
+.legal__updated { margin-top: 14px; font-size: 16px; color: var(--body); }
+.legal__lead { margin-top: 32px; font-size: 22px; line-height: 1.55; color: var(--ink); }
+.legal h2 { margin: 48px 0 12px; font-size: 26px; line-height: 1.25; font-weight: 500; letter-spacing: -0.01em; }
+.legal p, .legal li { font-size: 19px; line-height: 1.6; color: var(--body); }
+.legal p + p { margin-top: 16px; }
+.legal ul { margin: 12px 0 16px; padding-left: 1.2em; }
+.legal li + li { margin-top: 8px; }
+.legal li::marker { color: var(--oxblood); }
+.legal strong { color: var(--ink); font-weight: 500; }
+.legal a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; color: var(--ink); }
+.legal a:hover { text-decoration-thickness: 2px; }
+.legal .btn { text-decoration: none; }
+.contact__email { margin-top: 32px; font-size: clamp(24px, 6vw, 34px); line-height: 1.2; overflow-wrap: anywhere; }
+.contact__email a { text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.legal__cta { margin-top: 20px; }
+@media (min-width: 768px) {
+  .page-top { padding: 28px 0; }
+  .legal { padding: 88px 0 120px; }
+}
