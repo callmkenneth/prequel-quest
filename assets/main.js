@@ -1,12 +1,14 @@
 /* Prequel Quest — prequel.quest */
 (() => {
   /* ---------------------------------------------------------------
-     Email sign-up endpoint.
-     Paste your provider's form URL here (Buttondown, ConvertKit,
-     Mailchimp, Formspree, etc.). While it's empty, the form validates
-     the address but tells the visitor sign-ups aren't open yet.
+     Email sign-up: the postcard posts straight into the
+     "Prequel Quest Updates" Google Form, so every address lands in
+     that form's Responses tab (and its linked Sheet, if any).
+     The form must collect email addresses as "Responder input";
+     "Verified" makes Google reject anonymous submissions.
      --------------------------------------------------------------- */
-  const SIGNUP_ENDPOINT = '';
+  const SIGNUP_ENDPOINT = 'https://docs.google.com/forms/d/e/1FAIpQLSdqxRUQPFinUkpP7dCxB_BS4JFnjl1FQ7RNvReTapvOHXlDug/formResponse';
+  const SIGNUP_EMAIL_FIELD = 'emailAddress';
 
   /* ---------- hero word: uncover → discover → share (plays once, rests on "share") ---------- */
   const cycle = document.querySelector('.word-cycle');
@@ -153,23 +155,19 @@
     }
     email.removeAttribute('aria-invalid');
 
-    if (!SIGNUP_ENDPOINT) {
-      say('Thanks! Sign-ups open very soon.', 'ok');
-      return;
-    }
-
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
     say('Sending…');
     try {
-      const res = await fetch(SIGNUP_ENDPOINT, {
+      // Google Forms doesn't allow cross-site reads, so this is a
+      // fire-and-forget post: success means the request went out.
+      await fetch(SIGNUP_ENDPOINT, {
         method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: new FormData(form),
+        mode: 'no-cors',
+        body: new URLSearchParams({ [SIGNUP_EMAIL_FIELD]: value }),
       });
-      if (!res.ok) throw new Error(String(res.status));
       form.reset();
-      say('You’re on the list. Watch your inbox!', 'ok');
+      say('You’re on the list. We’ll be in touch.', 'ok');
     } catch {
       say('That didn’t send. Please try again.', 'error');
     } finally {
