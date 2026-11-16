@@ -30,16 +30,15 @@
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
     <defs>
-      <symbol id="i-castle" viewBox="0 0 428 348"><path fill="currentColor" d="M10 80H38Q46 80 46 88V108Q46 116 54 116H74Q82 116 82 108V88Q82 80 90 80H112Q120 80 120 88V154Q120 162 128 162H130Q138 162 138 154V8Q138 0 146 0H186Q194 0 194 8V28Q194 36 202 36H232Q240 36 240 28V8Q240 0 248 0H288Q296 0 296 8V154Q296 162 304 162H306Q314 162 314 154V88Q314 80 322 80H342Q350 80 350 88V108Q350 116 358 116H378Q386 116 386 108V88Q386 80 394 80H418Q428 80 428 90V128Q428 140 416 146V348H278V260C278 220 254 190 214 170C174 190 150 220 150 260V348H12V146Q0 140 0 128V90Q0 80 10 80Z"/></symbol>
+      <symbol id="i-tower" viewBox="0 0 516 622"><path fill="currentColor" fill-rule="evenodd" d="M0 143V38A33 33 0 0 1 33 5H98.5A30 30 0 0 1 128.5 35V69A31 31 0 0 0 190.5 69V32A32 32 0 0 1 222.5 0H293.5A32 32 0 0 1 325.5 32V69A31 31 0 0 0 387.5 69V35A30 30 0 0 1 417.5 5H483A33 33 0 0 1 516 38V143C516 173 490 196 467 206L505 621.5H11L49 206C26 196 0 173 0 143ZM215.2 357L180.9 477.5Q175.7 495.5 193.7 495.5H322.3Q340.3 495.5 335.1 477.5L300.8 357A79.5 79.5 0 1 0 215.2 357Z"/></symbol>
       <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
       <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
-      <symbol id="i-circle-arrow" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m12 16 4-4-4-4"/><path d="M8 12h8"/></symbol>
       <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></symbol>
       <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
       <symbol id="i-video" viewBox="0 0 24 24"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></symbol>
       <symbol id="i-archive" viewBox="0 0 24 24"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"/><path d="M10 12h4"/></symbol>
       <symbol id="i-wand" viewBox="0 0 24 24"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72"/><path d="m14 7 3 3"/><path d="M5 6v4"/><path d="M19 14v4"/><path d="M10 2v2"/><path d="M7 8H3"/><path d="M21 16h-4"/><path d="M11 3H9"/></symbol>
-      <symbol id="i-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol>
+      <symbol id="i-keyhole" viewBox="-76.05 -15.85 316.7 316.7"><path fill="currentColor" stroke="none" d="M39.5 146.5L5.2 267Q0 285 18 285H146.6Q164.6 285 159.4 267L125.1 146.5A79.5 79.5 0 1 0 39.5 146.5Z"/></symbol>
     </defs>
   </svg>
 
@@ -58,13 +57,13 @@
       </ul>
 
       <a class="logo" href="/" aria-label="Prequel Quest home">
-        <svg class="logo__mark" aria-hidden="true"><use href="#i-castle"/></svg>
+        <svg class="logo__mark" aria-hidden="true"><use href="#i-tower"/></svg>
         <span class="logo__word" aria-hidden="true">Prequel Quest</span>
       </a>
 
       <div class="nav__right">
         <a class="btn btn--outline-light nav__cta" href="#updates">
-          Get Updates <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          Get Updates <svg class="ico" aria-hidden="true"><use href="#i-keyhole"/></svg>
         </a>
         <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
           <svg class="ico ico--24" aria-hidden="true"><use href="#i-menu"/></svg>
@@ -84,7 +83,7 @@
         <p class="hero__sub">Join the movement to capture and share the stories that show the world who they really are.</p>
         <div class="cta">
           <a class="btn btn--solid-light btn--block-mobile" href="#updates">
-            Get Updates <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            Get Updates <svg class="ico" aria-hidden="true"><use href="#i-keyhole"/></svg>
           </a>
         </div>
       </div>
@@ -100,7 +99,7 @@
     <div class="menu__top">
       <div class="menu__bar">
         <a class="logo" href="/" aria-label="Prequel Quest home">
-          <svg class="logo__mark" aria-hidden="true"><use href="#i-castle"/></svg>
+          <svg class="logo__mark" aria-hidden="true"><use href="#i-tower"/></svg>
           <span class="logo__word" aria-hidden="true">Prequel Quest</span>
         </a>
         <button class="icon-btn menu-close" type="button" aria-label="Close menu">
@@ -116,7 +115,7 @@
     <div class="menu__bottom">
       <p>Join the movement to capture and share the stories that show the world who they really are.</p>
       <a class="btn btn--solid-light btn--block" href="#updates">
-        Get Updates <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        Get Updates <svg class="ico" aria-hidden="true"><use href="#i-keyhole"/></svg>
       </a>
     </div>
   </div>
@@ -136,7 +135,7 @@
           <p class="body">It’s a community, a cause, and a toolkit. Our goal is to give you everything you need to explore your past and share its story.</p>
           <div class="cta">
             <a class="btn btn--outline-dark btn--block-mobile" href="#updates">
-              Join the Waitlist <svg class="ico" aria-hidden="true"><use href="#i-circle-arrow"/></svg>
+              Join the Waitlist <svg class="ico" aria-hidden="true"><use href="#i-keyhole"/></svg>
             </a>
           </div>
         </div>
@@ -164,7 +163,7 @@
           <p class="body">Begin the journey to discover your origin story. Then share it with the people who need to hear it.</p>
           <div class="cta">
             <a class="btn btn--outline-light btn--block-mobile" href="#updates">
-              Save my spot <svg class="ico" aria-hidden="true"><use href="#i-circle-arrow"/></svg>
+              Save my spot <svg class="ico" aria-hidden="true"><use href="#i-keyhole"/></svg>
             </a>
           </div>
         </div>
@@ -179,7 +178,7 @@
           <p class="body">Record the history only you have lived and pass it on to posterity today.</p>
           <div class="cta">
             <a class="btn btn--outline-dark btn--block-mobile" href="#updates">
-              Request Access <svg class="ico" aria-hidden="true"><use href="#i-circle-arrow"/></svg>
+              Request Access <svg class="ico" aria-hidden="true"><use href="#i-keyhole"/></svg>
             </a>
           </div>
         </div>
@@ -199,7 +198,7 @@
         <div class="features__head">
           <h2 class="h2" id="features-h">Features coming soon</h2>
           <a class="btn btn--outline-light features__cta features__cta--top" href="#updates">
-            Get Updates <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            Get Updates <svg class="ico" aria-hidden="true"><use href="#i-keyhole"/></svg>
           </a>
         </div>
         <ul class="features__list" role="list">
@@ -226,7 +225,7 @@
           </li>
         </ul>
         <a class="btn btn--outline-light btn--block-mobile features__cta features__cta--bottom" href="#updates">
-          Get Updates <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          Get Updates <svg class="ico" aria-hidden="true"><use href="#i-keyhole"/></svg>
         </a>
       </div>
     </section>
@@ -256,7 +255,7 @@
                    autocomplete="email" placeholder="Your email address" required
                    aria-describedby="signup-status" />
             <button class="btn btn--oxblood btn--block" type="submit">
-              Subscribe <svg class="ico" aria-hidden="true"><use href="#i-send"/></svg>
+              Subscribe <svg class="ico" aria-hidden="true"><use href="#i-keyhole"/></svg>
             </button>
             <p class="postcard__status" id="signup-status" role="status" aria-live="polite"></p>
           </form>
@@ -292,7 +291,7 @@
         </nav>
       </div>
       <a class="footer__mark" href="/" aria-label="Prequel Quest home">
-        <svg class="footer__castle" aria-hidden="true"><use href="#i-castle"/></svg>
+        <svg class="footer__tower" aria-hidden="true"><use href="#i-tower"/></svg>
         <span class="footer__word" aria-hidden="true">Prequel Quest</span>
       </a>
     </div>
