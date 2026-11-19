@@ -168,6 +168,8 @@
       });
       form.reset();
       say('You’re on the list. We’ll be in touch.', 'ok');
+      // Count the sign-up in Umami. Only the event name is sent, never the address.
+      window.umami?.track('Postcard signup');
     } catch {
       say('That didn’t send. Please try again.', 'error');
     } finally {
